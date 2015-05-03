@@ -5,6 +5,8 @@
 
 #define STR_SIZE 80   //the max length of a string
 
+const char *S1="10123456789", S2="aaa";
+
 /**
 * 00. to test the string function.
 *     This function locations separately in str_test.c
