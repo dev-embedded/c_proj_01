@@ -5,14 +5,15 @@
 
 #define STR_SIZE 80   //the max length of a string
 
-const char *S1="10123456789", S2="aaa";
+const char *S1="0123456789";
+const char *S2="aaa";
 
 /**
 * 00. to test the string function.
 *     This function locations separately in str_test.c
 *     The others functions followed stored in a file named lib_str.c
 */
-int str_test();
+//int str_test();
 
 /**
 * 01. xx_strlen() is to get the length of a string, '\0' is not included in.
@@ -22,14 +23,14 @@ int str_test();
 */
 int ld_strlen();
 int jq_strlen();
-int st_strlen();
+int st_strlen(const char *str);
 int zs_strlen();
 int _strlen();
 
 /**
 * 02. xx_strcat() is to attach str2 to str1, then return str1.
 */
-char* ld_strcat()
+char* ld_strcat();
 char* jq_strcat();
 char* st_strcat();
 char* zs_strcat();
