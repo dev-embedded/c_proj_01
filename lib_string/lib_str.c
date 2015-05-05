@@ -26,9 +26,16 @@ int st_strlen(const char *str)
 	return len;
 }
 
-int zs_strlen()
+int zs_strlen(const char *str)
 {
-	return _INA;
+	int len = 0;
+
+//if ((str == NULL)||(*str == '\0'))
+//	return 0;
+
+	while (*str++)
+	++len;
+	return (len);
 }
 
 int _strlen()
