@@ -3,17 +3,18 @@
 #ifndef LIB_STRING_H_
 #define LIB_STRING_H_
 
-#define STR_SIZE 80   //the max length of a string
+//#define STR_SIZE 80   //the max length of a string
 
 const char *S1="0123456789";
 const char *S2="aaa";
+const char *NA="Not Available!";
 
 /**
 * 00. to test the string function.
 *     This function locations separately in str_test.c
 *     The others functions followed stored in a file named lib_str.c
 */
-//int str_test();
+int str_test();
 
 /**
 * 01. xx_strlen() is to get the length of a string, '\0' is not included in.
@@ -49,11 +50,11 @@ int _strcmp();
 /**
 * 04. xx_strcpy() is to copy str2 to str1. then return str1.
 */
-int ld_strcpy();
-int jq_strcpy();
-int st_strcpy();
-int zs_strcpy();
-int _strcpy();
+char ld_strcpy();
+char jq_strcpy();
+char st_strcpy();
+char zs_strcpy();
+char _strcpy();
 
 
 #endif  /* LIB_STRING_H_ */
