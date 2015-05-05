@@ -1,18 +1,27 @@
 // 0. This is the lib_string.h
+// 1. For the constant values, NOT like functions, we can:
+//    1-a.	use #define CNAME value to define them in a ".h" file; then include this .h file
+//		  	in every .c file which will use these definitions.
+//	  1-b.	define the value in one .c file; and declare it with "extern" in a .h file; then
+//			include that .h file in every .c file which will use these definitions.
 
 #ifndef LIB_STRING_H_
 #define LIB_STRING_H_
 
 #define STR_SIZE 80   //the max length of a string
+#define NA "Not Available!"
+#define S1 "0123456789"
+#define S2 "aaa"
 
-extern char *S1, *S2, *NA;
+//The following declaration works with definition in str_test.c, but now, we try the #define, see up.
+//extern char *S1, *S2, *NA;
 
 /**
 * 00. to test the string function.
 *     This function locations separately in str_test.c
 *     The others functions followed stored in a file named lib_str.c
 */
-//int str_test();
+int str_test();
 
 /**
 * 01. xx_strlen() is to get the length of a string, '\0' is not included in.

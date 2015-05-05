@@ -1,13 +1,21 @@
 // 0. This is the str_test.c
+// 1. We have to include the lib_string.h file here because we use some value defined there.
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "lib_string.h"
 
+/*
+// The following char* definition works when add the following declaration
+// "external char *S1, *S2, *NA;"  in the string.h file.
+// But now I'd like to try another method, put all these definitions in .h file with #define.
+// See string.h for details.
 char *S1="0123456789";
 char *S2="aaa";
 char *NA="Not Available!";
+*/
+
 
 int str_test()
 {

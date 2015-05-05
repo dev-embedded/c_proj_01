@@ -1,4 +1,6 @@
-// 01. This is the lib_str.c
+// 0. This is the lib_str.c
+// 1. We have to include the lib_string.h file here because we use some value defined there.
+
 #include "lib_string.h"
 
 int ld_strlen()
