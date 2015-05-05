@@ -131,9 +131,16 @@ int jq_strcpy()
 	return -1;
 }
 
-int st_strcpy()
+char *st_strcpy(char *dest, const char *src)
 {
-	return -1;
+	int i = 0;
+	while('\0' != *(src + i))
+	{
+		*(dest + i) = *(src + i);
+		i++;
+	}
+	*(dest + i) = '\0';
+	return dest;
 }
 
 int zs_strcpy()

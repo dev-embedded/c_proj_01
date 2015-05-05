@@ -51,7 +51,7 @@ int _strcmp();
 */
 int ld_strcpy();
 int jq_strcpy();
-int st_strcpy();
+char *st_strcpy(char *dest, const char *src);
 int zs_strcpy();
 int _strcpy();
 

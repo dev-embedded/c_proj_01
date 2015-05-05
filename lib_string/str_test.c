@@ -32,14 +32,17 @@ printf("ST's answer=%s\n", st_strcat(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
 printf("ZS's answer=%s\n", zs_strcat(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
-/*
+
 printf("\n4. test the _strcpy() to copy string 2 to string 1:\n");
+/*
 printf("LINGdong's answer=%s\n", ld_strcpy(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
 printf("JQ's answer=%s\n", jq_strcpy(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
-pringf("ST's answer=%s\n", st_strcpy(str1,str2));
-strcpy(str1,S1); strcpy(str2, S2);
+*/
+st_strcpy(str1,str2);
+printf("ST's answer=%s\n", str1);
+/*
 printf("ZS's answer=%s\n", zs_strcpy(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
 */
