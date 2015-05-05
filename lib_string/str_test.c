@@ -40,8 +40,7 @@ strcpy(str1,S1); strcpy(str2, S2);
 printf("JQ's answer=%s\n", jq_strcpy(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
 */
-st_strcpy(str1,str2);
-printf("ST's answer=%s\n", str1);
+printf("ST's answer=%s\n", st_strcpy(str1,str2));
 /*
 printf("ZS's answer=%s\n", zs_strcpy(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
