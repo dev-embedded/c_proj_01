@@ -6,9 +6,12 @@ int ld_strlen()
 	return -1;
 }
 
-int jq_strlen()
+int jq_strlen(const char* str)
 {
-	return -1;
+	int i;
+	for(i=0;i<STR_SIZE;i++)
+		if(str[i]=='\0') return (i);
+	return i;
 }
 
 int st_strlen(const char *str)
@@ -39,9 +42,23 @@ char* ld_strcat(char *str, const char *substr)
 	return NA;
 }
 
-char* jq_strcat(char *str, const char *substr)
+char* jq_strcat(char *str1, const char *str2)
 {
-	return NA;
+	int len1=jq_strlen(str1);
+	int len2=jq_strlen(str2);
+	int i;
+	if(len1+len2<=STR_SIZE)
+		{
+		for(i=0;i<len2;i++)
+			str1[len1+i]=str2[i];
+		}
+	else
+		{
+		for(i=len1;i<STR_SIZE;i++);
+			str1[i]=str2[i-len1];
+		}
+	str1[len1+i]='\0';
+	return (str1);
 }
 
 char* st_strcat(char *str, const char *substr)
@@ -75,9 +92,15 @@ int ld_strcmp()
 	return -1;
 }
 
-int jq_strcmp()
+int jq_strcmp(const char *str1, const char *str2)
 {
-	return -1;
+	int i;
+	for(i=0;i<STR_SIZE;i++)
+		{
+		if(str1[i]=='\0') return(str1[i]-str2[i]);
+		if(str1[i]!=str2[i]) return(str1[i]-str2[i]);
+		}
+	return (str1[i]-str2[i]);
 }
 
 int st_strcmp(const char *str, const char *substr)
@@ -126,9 +149,13 @@ char* ld_strcpy()
 	return NA;
 }
 
-char* jq_strcpy()
+char* jq_strcpy(char* str1, const char* str2)
 {
-	return NA;
+	int i;
+	int len2=jq_strlen(str2);
+	for (i=0;i<=len2;i++)     //when i=len2, it copies '\0'
+		str1[i]=str2[i];
+	return str1;
 }
 
 char *st_strcpy(char *dest, const char *src)

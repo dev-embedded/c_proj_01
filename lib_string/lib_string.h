@@ -21,7 +21,7 @@ extern char *S1, *S2, *NA;
 *     _strlen is the original lib function for comparation.
 */
 int ld_strlen();
-int jq_strlen();
+int jq_strlen(const char* str);
 int st_strlen(const char *str);
 int zs_strlen();
 int _strlen();
@@ -30,8 +30,8 @@ int _strlen();
 * 02. xx_strcat() is to attach str2 to str1, then return str1.
 */
 char* ld_strcat();
-char* jq_strcat();
-char* st_strcat();
+char* jq_strcat(char *str1, const char *str2);
+char* st_strcat(char *str, const char *substr);
 char* zs_strcat();
 char* _strcat();
 
@@ -40,8 +40,8 @@ char* _strcat();
 *     If str1!=str2, then return str1-str2; if str1==str2, then return 0;
 */
 int ld_strcmp();
-int jq_strcmp();
-int st_strcmp();
+int jq_strcmp(const char *str1, const char *str2);
+int st_strcmp(const char *str, const char *substr);
 int zs_strcmp();
 int _strcmp();
 
@@ -49,7 +49,7 @@ int _strcmp();
 * 04. xx_strcpy() is to copy str2 to str1. then return str1.
 */
 char* ld_strcpy();
-char* jq_strcpy();
+char* jq_strcpy(char* str1, const char* str2);
 char *st_strcpy(char *dest, const char *src);
 char* zs_strcpy();
 char* _strcpy();

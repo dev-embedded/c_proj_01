@@ -15,7 +15,7 @@ printf("Now, we are going to test the string lib functions created by ourselves.
 printf("We have 4 functions: strlen, strcmp, strcat, strcpy.\n");
 printf("There are two string, string 1 is: \"0123456789\", string 2 is\"aaa\"\n");
 
-char str1[20], str2[10];
+char str1[STR_SIZE], str2[STR_SIZE];
 strcpy(str1,S1); strcpy(str2, S2);
 printf("Test Start ... ...\n");
 
