@@ -5,7 +5,7 @@
 
 int ld_strlen()
 {
-	return -1;
+	return _INA;
 }
 
 int jq_strlen(const char* str)
@@ -28,12 +28,12 @@ int st_strlen(const char *str)
 
 int zs_strlen()
 {
-	return -1;
+	return _INA;
 }
 
 int _strlen()
 {
-	return -1;
+	return _INA;
 }
 
 /**
@@ -41,7 +41,7 @@ int _strlen()
 */
 char* ld_strcat(char *str, const char *substr)
 {
-	return NA;
+	return _CPNA;
 }
 
 char* jq_strcat(char *str1, const char *str2)
@@ -77,12 +77,12 @@ char* st_strcat(char *str, const char *substr)
 
 char* zs_strcat(char *str, const char *substr)
 {
-	return NA;
+	return _CPNA;
 }
 
 char* _strcat(char *str, const char *substr)
 {
-	return NA;
+	return _CPNA;
 }
 
 /**
@@ -91,7 +91,7 @@ char* _strcat(char *str, const char *substr)
 */
 int ld_strcmp()
 {
-	return -1;
+	return _INA;
 }
 
 int jq_strcmp(const char *str1, const char *str2)
@@ -135,12 +135,12 @@ int st_strcmp(const char *str, const char *substr)
 
 int zs_strcmp()
 {
-	return -1;
+	return _INA;
 }
 
 int _strcmp()
 {
-	return -1;
+	return _INA;
 }
 
 /**
@@ -148,7 +148,7 @@ int _strcmp()
 */
 char* ld_strcpy()
 {
-	return NA;
+	return _CPNA;
 }
 
 char* jq_strcpy(char* str1, const char* str2)
@@ -174,11 +174,11 @@ int i = 0;
 
 char* zs_strcpy()
 {
-	return NA;
+	return _CPNA;
 }
 
 char* _strcpy()
 {
-	return NA;
+	return _CPNA;
 }
 

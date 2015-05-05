@@ -9,12 +9,14 @@
 #define LIB_STRING_H_
 
 #define STR_SIZE 80   //the max length of a string
-#define NA "Not Available!"
-#define S1 "0123456789"
-#define S2 "aaa"
+#define _CPNA "Not Available!" 	//function NOT Ready for char* ()
+#define _INA -999				//function NOT Ready for int ()
+#define _S1 "0123456789"
+#define _S2 "aaa"
 
 //The following declaration works with definition in str_test.c, but now, we try the #define, see up.
-//extern char *S1, *S2, *NA;
+//extern char *_S1, *_S2, *_CPNA;
+//extern int _INA;
 
 /**
 * 00. to test the string function.
