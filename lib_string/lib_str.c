@@ -1,5 +1,4 @@
 // 01. This is the lib_str.c
-#include "lib_string.h"
 
 int ld_strlen()
 {
@@ -36,35 +35,34 @@ int _strlen()
 */
 char* ld_strcat(char *str, const char *substr)
 {
-	return NA;
+	return str;
 }
 
 char* jq_strcat(char *str, const char *substr)
 {
-	return NA;
+	return str;
 }
 
 char* st_strcat(char *str, const char *substr)
 {
-	char *str_temp = str;
-	int len_str = st_strlen(str_temp);
+	int len_str = st_strlen(str);
 	int len_substr = st_strlen(substr);
 	int cnt;
 	for(cnt=0;cnt<=len_substr;cnt++)
 	{
-		*(str_temp + len_str + cnt) = *(substr + cnt);
+		*(str + len_str + cnt) = *(substr + cnt);
 	}
-	return str_temp;
+	return str;
 }
 
 char* zs_strcat(char *str, const char *substr)
 {
-	return NA;
+	return str;
 }
 
 char* _strcat(char *str, const char *substr)
 {
-	return NA;
+	return str;
 }
 
 /**
@@ -122,28 +120,35 @@ int _strcmp()
 /**
 * 04. xx_strcpy() is to copy str2 to str1. then return str1.
 */
-char ld_strcpy()
+int ld_strcpy()
 {
-	return NA;
+	return -1;
 }
 
-char jq_strcpy()
+int jq_strcpy()
 {
-	return NA;
+	return -1;
 }
 
-char st_strcpy()
+char *st_strcpy(char *dest, const char *src)
 {
-	return NA;
+int i = 0;
+	while('\0' != *(src + i))
+	{
+		*(dest + i) = *(src + i);
+		i++;
+	}
+	*(dest + i) = '\0';
+	return dest;
 }
 
-char zs_strcpy()
+int zs_strcpy()
 {
-	return NA;
+	return -1;
 }
 
-char _strcpy()
+int _strcpy()
 {
-	return NA;
+	return -1;
 }
 
