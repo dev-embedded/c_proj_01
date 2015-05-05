@@ -45,15 +45,14 @@ char* jq_strcat(char *str, const char *substr)
 
 char* st_strcat(char *str, const char *substr)
 {
-	char *str_temp = str;
-	int len_str = st_strlen(str_temp);
+	int len_str = st_strlen(str);
 	int len_substr = st_strlen(substr);
 	int cnt;
 	for(cnt=0;cnt<=len_substr;cnt++)
 	{
-		*(str_temp + len_str + cnt) = *(substr + cnt);
+		*(str + len_str + cnt) = *(substr + cnt);
 	}
-	return str_temp;
+	return str;
 }
 
 char* zs_strcat(char *str, const char *substr)
