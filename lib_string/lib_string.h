@@ -5,8 +5,7 @@
 
 #define STR_SIZE 80   //the max length of a string
 
-const char *S1="0123456789";
-const char *S2="aaa";
+extern char *S1, *S2, *NA;
 
 /**
 * 00. to test the string function.
@@ -49,11 +48,11 @@ int _strcmp();
 /**
 * 04. xx_strcpy() is to copy str2 to str1. then return str1.
 */
-int ld_strcpy();
-int jq_strcpy();
+char* ld_strcpy();
+char* jq_strcpy();
 char *st_strcpy(char *dest, const char *src);
-int zs_strcpy();
-int _strcpy();
+char* zs_strcpy();
+char* _strcpy();
 
 
 #endif  /* LIB_STRING_H_ */

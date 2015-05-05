@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include "lib_string.h"
 
+char *S1="0123456789";
+char *S2="aaa";
+char *NA="Not Available!";
+
 int str_test()
 {
 printf("Now, we are going to test the string lib functions created by ourselves.\n");
@@ -34,16 +38,12 @@ printf("ZS's answer=%s\n", zs_strcat(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
 
 printf("\n4. test the _strcpy() to copy string 2 to string 1:\n");
-/*
 printf("LINGdong's answer=%s\n", ld_strcpy(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
 printf("JQ's answer=%s\n", jq_strcpy(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
-*/
 printf("ST's answer=%s\n", st_strcpy(str1,str2));
-/*
 printf("ZS's answer=%s\n", zs_strcpy(str1,str2));
 strcpy(str1,S1); strcpy(str2, S2);
-*/
 return 0;
 }

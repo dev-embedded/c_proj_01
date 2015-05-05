@@ -1,4 +1,5 @@
 // 01. This is the lib_str.c
+#include "lib_string.h"
 
 int ld_strlen()
 {
@@ -35,12 +36,12 @@ int _strlen()
 */
 char* ld_strcat(char *str, const char *substr)
 {
-	return str;
+	return NA;
 }
 
 char* jq_strcat(char *str, const char *substr)
 {
-	return str;
+	return NA;
 }
 
 char* st_strcat(char *str, const char *substr)
@@ -57,12 +58,12 @@ char* st_strcat(char *str, const char *substr)
 
 char* zs_strcat(char *str, const char *substr)
 {
-	return str;
+	return NA;
 }
 
 char* _strcat(char *str, const char *substr)
 {
-	return str;
+	return NA;
 }
 
 /**
@@ -120,14 +121,14 @@ int _strcmp()
 /**
 * 04. xx_strcpy() is to copy str2 to str1. then return str1.
 */
-int ld_strcpy()
+char* ld_strcpy()
 {
-	return -1;
+	return NA;
 }
 
-int jq_strcpy()
+char* jq_strcpy()
 {
-	return -1;
+	return NA;
 }
 
 char *st_strcpy(char *dest, const char *src)
@@ -142,13 +143,13 @@ int i = 0;
 	return dest;
 }
 
-int zs_strcpy()
+char* zs_strcpy()
 {
-	return -1;
+	return NA;
 }
 
-int _strcpy()
+char* _strcpy()
 {
-	return -1;
+	return NA;
 }
 
