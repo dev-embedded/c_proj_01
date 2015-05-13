@@ -219,7 +219,7 @@ char *st_strinsert(char *str, char *substr, int loc)
 	int substr_len = st_strlen(substr);
 	int i;
 	for (i = loc; i < str_len; i++)
-		str_temp[str_len + substr_len - i] = str_temp[str_len - i]; 
+		str_temp[str_len + substr_len - i] = str_temp[str_len - i];
 	for (i = 0; i < substr_len; i++)
 		str_temp[loc + i] = substr[i];
 	st_strcpy(str, str_temp);
@@ -229,7 +229,11 @@ char *st_strinsert(char *str, char *substr, int loc)
 /**
  * 06. this is to delete all of the char or the substring from the string.
  */
-char *st_strdel(char *str, char *substr);
+char *st_strdel(char *str, char *substr)
+{
+	char *temp = "";
+	return st_strrep(str, temp, substr);
+}
 
 /**
  * 07. this is to replace all of the char or the substring with another in the string.
@@ -244,9 +248,8 @@ char *st_strrep(char *str, char *rep, char *origin)
 		*(str_temp) = '\0';
 		char* p = str;
 		char *p1 = str;
-		int i = 0, j = 0, k = 0;
+		int i = 0, j = 0;
 		int str_temp_len;
-		int str_len = st_strlen(str);
 		int origin_len = st_strlen(origin);
 		int rep_len = st_strlen(rep);
 		while (-1 != (loc = st_strloc(p, origin)))
@@ -257,14 +260,17 @@ char *st_strrep(char *str, char *rep, char *origin)
 			{
 				*(str_temp + str_temp_len + i) = *(p + i);
 			}
-			for (j = 0; j < rep_len; j++)
+			if (0 < rep_len)
 			{
-				*(str_temp + str_temp_len + i + j) = *(rep + j);
+				for (j = 0; j < rep_len; j++)
+				{
+					*(str_temp + str_temp_len + i + j) = *(rep + j);
+				}
 			}
 			*(str_temp + str_temp_len + i + j + 1) = '\0';
 			p1 = str + loc + origin_len;
 			st_strcat(str_temp, p1);
-			p = p + loc + rep_len;
+			p = p + loc + origin_len;
 		}
 		printf("str_temp : %s\n", str_temp);
 		st_strcpy(str, str_temp);

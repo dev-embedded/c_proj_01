@@ -59,10 +59,13 @@ strcpy(str1,_S1); strcpy(str2, _S2);
 printf("\n5. test the _strinsert() :\n");
 printf("ST's answer=%s\n", st_strinsert(str1,str2,4));
 
+printf("\n6. test the _strdel() :\n");
+printf("ST's answer=%s\n", st_strdel(str1,str2));
+
 printf("\n７. test the _strrep() :\n");
 char *str3 = "bbb";
 char *str4 = "2";
-printf("ST's answer=%s\n", st_strrep(str1,str3,str2));
+printf("ST's answer=%s\n", st_strrep(str1,str3,str4));
 
 printf("\n8. test the _strloc() :\n");
 printf("ST's answer=%d\n", st_strloc(str1,str3));
