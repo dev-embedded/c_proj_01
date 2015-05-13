@@ -65,5 +65,25 @@ char *st_strcpy(char *dest, const char *src);
 char* zs_strcpy();
 char* _strcpy();
 
+/**
+* 05. this is to insert a char or a substring to the string.
+*/
+char *st_strinsert(char *str0, char *substr, int loc);
+
+/**
+* 06. this is to delete all of the char or the substring from the string.
+*/
+char *st_strdel(char *str, char *substr);
+
+/**
+* 07. this is to replace all of the char or the substring with another in the string.
+*/
+char *st_strrep(char *str, char *rep, char *origin);
+
+/**
+* 08. this is to return the first location of char or the first char of substring.
+*/
+int st_strloc(char *str, char *substr);
+
 
 #endif  /* LIB_STRING_H_ */
