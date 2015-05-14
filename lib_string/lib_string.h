@@ -13,6 +13,7 @@
 #define _INA -999				//function NOT Ready for int ()
 #define _S1 "0123456789"
 #define _S2 "aaa"
+#define _S3 "456"
 
 //The following declaration works with definition in str_test.c, but now, we try the #define, see up.
 //extern char *_S1, *_S2, *_CPNA;

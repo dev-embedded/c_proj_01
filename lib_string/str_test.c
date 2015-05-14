@@ -24,8 +24,8 @@ printf("Now, we are going to test the string lib functions created by ourselves.
 printf("We have 4 functions: strlen, strcmp, strcat, strcpy.\n");
 printf("There are two string, string 1 is: " _S1 ", string 2 is " _S2 ".\n");
 
-char str1[STR_SIZE], str2[STR_SIZE];
-strcpy(str1,_S1); strcpy(str2, _S2);
+char str1[STR_SIZE], str2[STR_SIZE], stra[STR_SIZE];
+strcpy(str1,_S1); strcpy(str2, _S2); strcpy(stra,_S3);
 printf("Note: if the (int) result=%d, or the (char*) result=" _S1 "; means the function is not ready!!!\n",_INA);
 printf("Test Start ... ...\n");
 
@@ -76,22 +76,25 @@ printf("JQ's answer=%s\n", jq_strinsert(str1,str2,8));
 printf("\n6. test the _strdel() :\n");
 strcpy(str1,_S1); strcpy(str2, _S1);
 printf("ST's answer=%s\n", st_strdel(str1,str2));
-strcpy(str1,_S1); strcpy(str2, _S2);
-//printf("JQ's answer=%s\n", jq_strdel(str1,str2));
+strcpy(str1,_S1); strcpy(str2, _S2); strcpy(stra,_S3);
+printf("str=%s, substr=%s; and to remove substr from str:\n",str1,stra);
+printf("JQ's answer=%s\n", jq_strdel(str1,stra));
 
 printf("\n７. test the _strrep() :\n");
 char *str3 = "bbb";
 char *str4 = "2";
 strcpy(str1,_S1); strcpy(str2, _S1);
 printf("ST's answer=%s\n", st_strrep(str1,str3,str4));
-strcpy(str1,_S1); strcpy(str2, _S2);
-//printf("JQ's answer=%s\n", jq_strreplace(str1,str3,str4));
+strcpy(str1,_S1); strcpy(str2, _S2); strcpy(stra,_S3);
+printf("str=%s, rep=%s, origin=%s; to replace origin with rep in str:\n",str1,str2,stra);
+printf("JQ's answer=%s\n", jq_strreplace(str1,str2,stra));
 
 printf("\n8. test the _strloc() :\n");
 strcpy(str1,_S1); strcpy(str2, _S2);
 printf("ST's answer=%d\n", st_strloc(str1,str3));
-strcpy(str1,_S1); strcpy(str2, _S2);
-//printf("JQ's answer=%d\n", jq_strloc(str1,str3));
+strcpy(str1,_S1); strcpy(str2, _S2); strcpy(stra,_S3);
+printf("str=%s, substr=%s; and the location is:\n",str1,stra);
+printf("JQ's answer=%d\n", jq_strloc(str1,stra));
 
 return 0;
 }

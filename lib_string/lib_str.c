@@ -407,12 +407,13 @@ int c;   //for count
 int m=0;   //for mark
 int i= jq_strlen(str);
 int j= jq_strlen(substr);
+//printf("str=%s, substr=%s; and len-str=%d, len-substr=%d\n",str,substr,i,j);
 if(i<j) return(-1);
 for(r=0;r<=(i-j);r++)
 	{
 	m=0;
 	for(c=0;c<j;c++)
-		if(str[r+c]!=substr[r+c])
+		if(str[r+c]!=substr[c])
 		{
 		   m=1; break;
 		}
