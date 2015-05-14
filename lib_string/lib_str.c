@@ -87,7 +87,7 @@ char* st_strcat(char *str, const char *substr)
 
 char* zs_strcat(char *str, const char *substr)
 {
-	//
+	//jhkh
 	char *cp = str;
 	while (*cp)
 	++cp;  //Get end of str
