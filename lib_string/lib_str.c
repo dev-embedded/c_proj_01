@@ -352,12 +352,15 @@ int len=jq_strlen(str);
 //int rlen=jq_strlen(rep);
 int olen=jq_strlen(origin);
 int i;
+//printf("in function(), str=%s, rep=%s, origin=%s; & the 1st loc=%d\n",str,rep,origin,loc);
 while (loc!=-1)
 	{
 	for(i=0;i<len-loc-olen;i++)  // to remove origin part from str
 		str[loc+i]=str[loc+olen+i];
 	str[loc+i]='\0';  //set the end of the new string
+//printf("after remove origin part, str=%s\n",str);
 	str=jq_strinsert(str, rep, loc);  //then, insert rep part to str
+	loc=jq_strloc(str, origin);
 	}
 return (str);
 }

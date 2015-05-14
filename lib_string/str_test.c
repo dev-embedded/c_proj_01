@@ -85,7 +85,7 @@ char *str3 = "bbb";
 char *str4 = "2";
 strcpy(str1,_S1); strcpy(str2, _S1);
 printf("ST's answer=%s\n", st_strrep(str1,str3,str4));
-strcpy(str1,_S1); strcpy(str2, _S2); strcpy(stra,_S3);
+strcpy(str1,"0145624563"); strcpy(str2, _S2); strcpy(stra,_S3);
 printf("str=%s, rep=%s, origin=%s; to replace origin with rep in str:\n",str1,str2,stra);
 printf("JQ's answer=%s\n", jq_strreplace(str1,str2,stra));
 
