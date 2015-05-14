@@ -2,6 +2,7 @@
 // 1. We have to include the lib_string.h file here because we use some value defined there.
 
 #include "lib_string.h"
+#include "stdio.h"
 
 int ld_strlen()
 {
@@ -226,6 +227,53 @@ char *st_strinsert(char *str, char *substr, int loc)
 	return str;
 }
 
+//JQ: if the final length of the string is longer than STR_SIZE, the excess part will be discarded.
+char* jq_strinsert(char* str, const char* substr, const int index)
+{
+int len=jq_strlen(str);
+if(index>len) return(str);   //the index is outside the string
+int slen=jq_strlen(substr);
+//printf("The length of str is: %d; & the length of substr is: %d\n", len, slen);
+int i;
+if((len+slen)<STR_SIZE)   //enough space for str + substr
+	{
+	for(i=0;i<=len-index;i++)
+		{
+		str[len+slen-i]=str[len-i];  //move str behind index part back
+//		printf ("during move: when i=%d, we got: %s\n",i,str);
+		}
+	for(i=0;i<slen;i++)
+		str[index+i]=substr[i];  //insert substr
+	}
+
+else if((index+slen)>=(STR_SIZE-1)) //not only part of str, but also part of substr will be discarded.
+	{
+	str[STR_SIZE-1]='\0';   //to complete the new string for return
+	for(i=0;i<STR_SIZE-index-1;i++)   //can only insert part of substr
+		str[index+i]=substr[i];
+	}
+
+else				// substr can be insert, but part of str will be discarded.
+	{
+	str[STR_SIZE-1]='\0';   //to complete the new string for return
+
+//for(i=len;i<STR_SIZE-1;i++) str[i]='z';
+//printf ("33333333 ---, str1=%s, & str2=%s \n", str, substr);
+	for(i=0;i<=(STR_SIZE-2)-(index+slen);i++)
+	// (STR_SIZE-2) means: 1 for the last '\0', another 1 for array starts from 0.
+		{
+		str[(STR_SIZE-2)-i]=str[(STR_SIZE-2)-slen-i]; //move part of str back for substr
+//printf ("during move: when i=%d, we got: %s\n",i,str);
+		}
+	for(i=0;i<slen;i++)
+		{
+		str[index+i]=substr[i];  //insert substr
+//printf ("during insert: as i=%d, we got: %s\n",i,str);
+		}
+	}
+return (str);
+}
+
 /**
  * 06. this is to delete all of the char or the substring from the string.
  */
@@ -234,6 +282,21 @@ char *st_strdel(char *str, char *substr)
 	char *temp = "";
 	return st_strrep(str, temp, substr);
 }
+
+char* jq_strdel(char* str, const char* substr)
+{
+int loc=-1,i;
+int len=jq_strlen(str);
+int slen=jq_strlen(substr);
+while((loc=jq_strloc(str,substr))>=0)
+	{
+	for(i=0;i<len-loc-slen;i++)
+		str[loc+i]=str[loc+slen+i]; // to remove substr part from str
+	str[loc+i]='\0';  //set the end of the new string
+	}
+return (str);
+}
+
 
 /**
  * 07. this is to replace all of the char or the substring with another in the string.
@@ -278,6 +341,29 @@ char *st_strrep(char *str, char *rep, char *origin)
 	}
 }
 
+
+// JQ: str is the string we work on, rep contains the replacing info,
+//     while origin is the info to be replaced.
+// Note: the excess part of STR_SIZE will be discarded.
+char* jq_strreplace(char* str, const char* rep, const char* origin)
+{
+int loc = jq_strloc(str, origin);
+int len=jq_strlen(str);
+//int rlen=jq_strlen(rep);
+int olen=jq_strlen(origin);
+int i;
+while (loc!=-1)
+	{
+	for(i=0;i<len-loc-olen;i++)  // to remove origin part from str
+		str[loc+i]=str[loc+olen+i];
+	str[loc+i]='\0';  //set the end of the new string
+	str=jq_strinsert(str, rep, loc);  //then, insert rep part to str
+	}
+return (str);
+}
+
+
+
 /**
  * 08. this is to return the first location of char or the first char of substring.
  */
@@ -313,3 +399,24 @@ int st_strloc(char *str, char *substr)
 	}
 }
 
+//JQ: return -1 if we can not find the location.
+int jq_strloc(const char* str, const char* substr)
+{
+int r;   //for return
+int c;   //for count
+int m=0;   //for mark
+int i= jq_strlen(str);
+int j= jq_strlen(substr);
+if(i<j) return(-1);
+for(r=0;r<=(i-j);r++)
+	{
+	m=0;
+	for(c=0;c<j;c++)
+		if(str[r+c]!=substr[r+c])
+		{
+		   m=1; break;
+		}
+	if(m==0) return(r);
+	}
+return (-1);
+}

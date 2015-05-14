@@ -53,22 +53,45 @@ strcpy(str1,_S1); strcpy(str2, _S2);
 printf("JQ's answer=%s\n", jq_strcpy(str1,str2));
 strcpy(str1,_S1); strcpy(str2, _S2);
 printf("ST's answer=%s\n", st_strcpy(str1,str2));
+strcpy(str1,_S1); strcpy(str2, _S2);
 printf("ZS's answer=%s\n", zs_strcpy(str1,str2));
 strcpy(str1,_S1); strcpy(str2, _S2);
 
 printf("\n5. test the _strinsert() :\n");
 printf("ST's answer=%s\n", st_strinsert(str1,str2,4));
+strcpy(str1,_S1); strcpy(str2, _S2);
+printf("\nWhile there is enough space to store both str1 and str2.\n");
+printf("-->total length=%d, str1=%s , str2=%s , insert point is 4.\n", STR_SIZE, str1,str2);
+printf("JQ's answer=%s\n", jq_strinsert(str1,str2,4));
+strcpy(str1,_S1); strcpy(str2, _S1);
+printf("\nNot enough space to store both string, part of str1 will lost.\n");
+printf("-->total length=%d, str1=%s , str2=%s , insert point is 4.\n", STR_SIZE, str1,str2);
+printf("JQ's answer=%s\n", jq_strinsert(str1,str2,4));
+strcpy(str1,_S1); strcpy(str2, _S1);
+printf("\nNot enough space to store both string, both part of str1 & str2 will lost.\n");
+printf("-->total length=%d, str1=%s , str2=%s , insert point is 8.\n", STR_SIZE, str1,str2);
+printf("JQ's answer=%s\n", jq_strinsert(str1,str2,8));
+
 
 printf("\n6. test the _strdel() :\n");
+strcpy(str1,_S1); strcpy(str2, _S1);
 printf("ST's answer=%s\n", st_strdel(str1,str2));
+strcpy(str1,_S1); strcpy(str2, _S2);
+//printf("JQ's answer=%s\n", jq_strdel(str1,str2));
 
 printf("\n７. test the _strrep() :\n");
 char *str3 = "bbb";
 char *str4 = "2";
+strcpy(str1,_S1); strcpy(str2, _S1);
 printf("ST's answer=%s\n", st_strrep(str1,str3,str4));
+strcpy(str1,_S1); strcpy(str2, _S2);
+//printf("JQ's answer=%s\n", jq_strreplace(str1,str3,str4));
 
 printf("\n8. test the _strloc() :\n");
+strcpy(str1,_S1); strcpy(str2, _S2);
 printf("ST's answer=%d\n", st_strloc(str1,str3));
+strcpy(str1,_S1); strcpy(str2, _S2);
+//printf("JQ's answer=%d\n", jq_strloc(str1,str3));
 
 return 0;
 }
