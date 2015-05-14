@@ -84,7 +84,12 @@ char* st_strcat(char *str, const char *substr)
 
 char* zs_strcat(char *str, const char *substr)
 {
-	return _CPNA;
+	char *cp = str;
+	while (*cp)
+	++cp;  //Get end of str
+	while (*cp++ = *substr++)
+	; //copy substr to the end of str
+	return (str);
 }
 
 char* _strcat(char *str, const char *substr)
@@ -140,9 +145,16 @@ int st_strcmp(const char *str, const char *substr)
 	return res;
 }
 
-int zs_strcmp()
+int zs_strcmp(const char *str, const char *substr)
 {
-	return _INA;
+	int ret = 0;
+	while (! (ret = *str - *substr) && *substr)
+		++str, ++substr;
+	if(ret < 0)
+		ret = -1;
+	else if (ret > 0)
+	ret = 1;
+	return (ret);
 }
 
 int _strcmp()
@@ -179,9 +191,12 @@ int i = 0;
 	return dest;
 }
 
-char* zs_strcpy()
+char* zs_strcpy(char *dest, const char *src)
 {
-	return _CPNA;
+	char*cp = dest;
+	while (*cp++ = *src++)
+	; // copy src to dest
+	return (dest);
 }
 
 char* _strcpy()
