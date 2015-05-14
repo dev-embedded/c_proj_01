@@ -8,11 +8,12 @@
 #ifndef LIB_STRING_H_
 #define LIB_STRING_H_
 
-#define STR_SIZE 80   //the max length of a string
+#define STR_SIZE 18   //the max length of a string
 #define _CPNA "Not Available!" 	//function NOT Ready for char* ()
 #define _INA -999				//function NOT Ready for int ()
 #define _S1 "0123456789"
 #define _S2 "aaa"
+#define _S3 "456"
 
 //The following declaration works with definition in str_test.c, but now, we try the #define, see up.
 //extern char *_S1, *_S2, *_CPNA;
@@ -65,5 +66,28 @@ char *st_strcpy(char *dest, const char *src);
 char* zs_strcpy();
 char* _strcpy();
 
+/**
+* 05. this is to insert a char or a substring to the string.
+*/
+char *st_strinsert(char *str0, char *substr, int loc);
+char* jq_strinsert(char* str, const char* substr, const int index);
+
+/**
+* 06. this is to delete all of the char or the substring from the string.
+*/
+char *st_strdel(char *str, char *substr);
+char* jq_strdel(char* str, const char* substr);
+
+/**
+* 07. this is to replace all of the char or the substring with another in the string.
+*/
+char *st_strrep(char *str, char *rep, char *origin);
+char* jq_strreplace(char* str, const char* rep, const char* origin);
+
+/**
+* 08. this is to return the first location of char or the first char of substring.
+*/
+int st_strloc(char *str, char *substr);
+int jq_strloc(const char* str, const char* substr);
 
 #endif  /* LIB_STRING_H_ */
