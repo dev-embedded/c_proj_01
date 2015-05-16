@@ -289,7 +289,7 @@ char* jq_strdel(char* str, const char* substr)
 int loc=-1,i;
 int len=jq_strlen(str);
 int slen=jq_strlen(substr);
-while((loc=jq_strloc(str,substr))>=0)
+while((loc=jq_strloc(str,substr,0))>=0)
 	{
 	for(i=0;i<len-loc-slen;i++)
 		str[loc+i]=str[loc+slen+i]; // to remove substr part from str
@@ -348,20 +348,27 @@ char *st_strrep(char *str, char *rep, char *origin)
 // Note: the excess part of STR_SIZE will be discarded.
 char* jq_strreplace(char* str, const char* rep, const char* origin)
 {
-int loc = jq_strloc(str, origin);
-int len=jq_strlen(str);
-//int rlen=jq_strlen(rep);
-int olen=jq_strlen(origin);
+int bp=0;  //set the begin point for loc
+int loc = jq_strloc(str,origin,bp);
+int rlen=jq_strlen(rep);   //length will not change
+int olen=jq_strlen(origin);   //length will not change
 int i;
 //printf("in function(), str=%s, rep=%s, origin=%s; & the 1st loc=%d\n",str,rep,origin,loc);
 while (loc!=-1)
 	{
+	int len=jq_strlen(str);  //the length of str changes every time after replacement
+//printf("When str=%s, loc=%d:\n",str,loc);
 	for(i=0;i<len-loc-olen;i++)  // to remove origin part from str
+		{
 		str[loc+i]=str[loc+olen+i];
+//printf("i=%d, str=%s\n",i,str);
+		}
 	str[loc+i]='\0';  //set the end of the new string
-//printf("after remove origin part, str=%s\n",str);
+//printf("after remove this origin part, str=%s\n",str);
 	str=jq_strinsert(str, rep, loc);  //then, insert rep part to str
-	loc=jq_strloc(str, origin);
+//printf("after insert this replace part, str=%s\n",str);
+	bp=loc+rlen;    //set the new begin point after this replacement
+	loc=jq_strloc(str, origin, bp);
 	}
 return (str);
 }
@@ -404,7 +411,8 @@ int st_strloc(char *str, char *substr)
 }
 
 //JQ: return -1 if we can not find the location.
-int jq_strloc(const char* str, const char* substr)
+//JQ: return the first substr location scanning from a given begin point
+int jq_strloc(const char* str, const char* substr, const int bp) //bp: begin point
 {
 int r;   //for return
 int c;   //for count
@@ -413,7 +421,7 @@ int i= jq_strlen(str);
 int j= jq_strlen(substr);
 //printf("str=%s, substr=%s; and len-str=%d, len-substr=%d\n",str,substr,i,j);
 if(i<j) return(-1);
-for(r=0;r<=(i-j);r++)
+for(r=bp;r<=(i-j);r++)
 	{
 	m=0;
 	for(c=0;c<j;c++)

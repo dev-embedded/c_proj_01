@@ -88,6 +88,7 @@ char* jq_strreplace(char* str, const char* rep, const char* origin);
 * 08. this is to return the first location of char or the first char of substring.
 */
 int st_strloc(char *str, char *substr);
-int jq_strloc(const char* str, const char* substr);
+//JQ: return the first substr location scanning from a given begin point
+int jq_strloc(const char* str, const char* substr, const int bp);  //bp: begin point.
 
 #endif  /* LIB_STRING_H_ */
