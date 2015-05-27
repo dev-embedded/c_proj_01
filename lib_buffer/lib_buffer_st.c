@@ -16,7 +16,7 @@ buffer_st *buf_init_st()
 
 void buf_exit_st(buffer_st *buffer)
 {
-	if (buffer->size != 0)
+	if (buffer->size > 0)
 	{
 		buf_clear_st(buffer);
 	}
@@ -25,7 +25,10 @@ void buf_exit_st(buffer_st *buffer)
 
 void buf_clear_st(buffer_st *buffer)
 {
-
+	while(!buf_isempty_st(buffer))
+	{
+		buf_del_st(buffer);
+	}
 }
 
 int buf_isempty_st(buffer_st *buffer)
@@ -84,12 +87,17 @@ buffer_st *buf_del_st(buffer_st *buffer)
 {
 	l_buffer_node temp_node = buffer->loc_read;
 	printf("%c", buffer->loc_read->data);
-	buffer->loc_read = buffer->loc_read->next;
-	free(temp_node);
-	if (buffer->size == 0)
+	if(buffer->size > 1)
 	{
+	buffer->loc_read = buffer->loc_read->next;
+	}
+	if(buffer->size == 1)
+	{
+		buffer->loc_read = NULL;
 		buffer->loc_write = NULL;
 	}
+	free(temp_node);
+	buffer->size--;
 	return buffer;
 }
 

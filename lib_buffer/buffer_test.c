@@ -4,7 +4,7 @@
 int buffer_test()
 {
 
-	char *str = "BCDEF";
+	char *str = "BC";
  buffer_st *buffer = buf_init_st();
 	printf("created a new buffer!\n");
 
@@ -14,7 +14,7 @@ int buffer_test()
 	printf("first element is : %c\n",buf_getdata_st(buffer));
 
 
-	printf("second element is : %c\n",buffer->loc_read->next->next->next->data);
+	printf("second element is : %c\n",buffer->loc_read->next->next->data);
 
 	buf_exit_st(buffer);
 	printf("destroy the buffer !\n");
