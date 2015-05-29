@@ -7,5 +7,4 @@
 项目实现过程：团队成员各自编写.c文件和.h文件，并统一在main函数中测试功能。
 
 
---- May 01, 2015
---- Create by Sun Tao
+---Project created by Sun Tao on May 01, 2015
