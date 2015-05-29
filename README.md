@@ -18,5 +18,10 @@ C Language Project 1
    it would be easily to find all the libs (functions, or any other thins) together.
 
 5. The first sub-project is lib_string, created on May 03, 2015.
+
 -----------Update: May 15, 2015---by JQ-----------
 
+
+6. In each sub-folder (sub-project), there could be a README.md file for description, & a REPORT.md file for summary.
+
+-----------Update: May 29, 2015-------------------
