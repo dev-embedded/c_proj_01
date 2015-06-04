@@ -41,4 +41,8 @@ buffer_st *buf_insert_st(buffer_st *buffer, char ch);
 
 buffer_st *buf_del_st(buffer_st *buffer);
 
+int buf_write_st(buffer_st *buffer, const char *str);
+
+buffer_st *buf_read_st(buffer_st *buffer);
+
 #endif /* LIB_BUFFER_LIB_BUFFER_ST_H_ */

@@ -10,7 +10,7 @@
 
 
 
-const int BUFFER_SIZE = 20;
+const int BUFFER_SIZE = 5;
 
 
 #endif /* LIB_BUFFER_BUFFER_GLOBAL_H_ */
