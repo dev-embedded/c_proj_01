@@ -11,6 +11,11 @@
 #define NULL 0
 #define _NA -999  //Not Available
 
+//buffer mode:
+#define _IOFBF 1  //Full Buffer
+#define _IOLBF 2  //Line Buffer
+#define _IONBF 3  //No Buffer
+
 typedef struct  sll//singly linked list buffer
 {
 	char buc;   //buffer list unit char
@@ -54,6 +59,7 @@ void buf_sll_clear(BUFP_T *buf);
  *     Output the data from Buffer to a file, then clear the buffer data.
  */
 int buf_sll_flush(FILE *stream, BUFP_T *buf);
+int buf_sll_flush2(FILE *stream, BUFP_T *buf);
 
 /*
  * 06. FIFO Buffer Writing- Singly linked list Buffer Write.
@@ -63,7 +69,7 @@ int buf_sll_w(BUFP_T *buf, char *txt);
 /*
  * 07. FIFO Buffer Reading - Singly linked list Buffer Read.
  */
-char *buf_sll_r(BUFP_T *buf);
+int buf_sll_r(FILE *stream, BUFP_T *buf, int bufmod);
 
 
 #endif /* SINGLY_LINKED_LIST_JQ_H_ */

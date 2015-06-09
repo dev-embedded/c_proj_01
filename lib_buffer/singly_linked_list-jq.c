@@ -83,7 +83,29 @@ void buf_sll_clear(BUFP_T *buf)
  * 05. FIFO Buffer flush - Singly linked list Buffer Length.
  *     Output the data from Buffer to a file, then clear the buffer data.
  */
+
+// Output all of the content first, then point buf_c to the head of the linked list
 int buf_sll_flush(FILE *stream, BUFP_T *buf)
+{
+	char ch;
+	SLL_T *pb;
+	int i;
+	int len=buf_sll_len(buf);
+
+	//Output the content of the linked list
+	for(i=0;i<len;i++)
+	{
+		pb=buf->buf_h;
+		ch=pb->buc;  //get a char from linked list
+		fputc(ch,stream);  //output the char to stream
+		pb=pb->next;
+	}
+	buf->buf_c=buf->buf_h;  //to point buf_c to the head of linked list
+	return 0;
+}
+
+//Output char one by one, renew the linked list on each char pop-up.
+int buf_sll_flush2(FILE *stream, BUFP_T *buf)
 {
 	char ch;
 	SLL_T *pb, *pt;
@@ -92,15 +114,15 @@ int buf_sll_flush(FILE *stream, BUFP_T *buf)
 		ch=(buf->buf_h)->buc;  //get the char in head
 		fputc(ch,stream);  //output a char to stream
 
-		//to move bef_c backward
+		//to move linked list backward
 		pb=buf->buf_h;
 		while(pb!=buf->buf_c) //to move chars forward
 		{
 			pb->buc=(pb->next)->buc;  //get char from next unit of linked-list
-			pt=pb;
+			pt=pb;   //pt is for updating buf_c after moving linked list backward
 			pb=pb->next;
 		}
-		buf->buf_c=pt;  //to move buf_c backward
+		buf->buf_c=pt;  //update buf_c after moving linked list backward
 	}
 	return 0;
 }
@@ -116,8 +138,46 @@ int buf_sll_w(BUFP_T *buf, char *txt)
 /*
  * 07. FIFO Buffer Reading - Singly linked list Buffer Read.
  */
-char *buf_sll_r(BUFP_T *buf)
+int buf_sll_r(FILE *stream, BUFP_T *buf, int bufmod)
 {
-	return (char*)_NA; //NOT Available
+	if(bufmod==_IOFBF) buf_sll_flush(stream,buf);
+	else
+	{
+		char ch;
+		SLL_T *pb, *pt;
+		while(buf->buf_c != buf->buf_h && buf->buf_h->buc != '\n')
+		{
+			ch=(buf->buf_h)->buc;  //get the char in head
+			fputc(ch,stream);  //output a char to stream
+
+			//to move linked list backward
+			pb=buf->buf_h;
+			while(pb!=buf->buf_c) //to move chars forward
+			{
+				pb->buc=(pb->next)->buc;  //get char from next unit of linked-list
+				pt=pb;   //pt is for updating buf_c after moving linked list backward
+				pb=pb->next;
+			}
+			buf->buf_c=pt;  //update buf_c after moving linked list backward
+		}
+
+		//to output the '\n'
+		while(buf->buf_h->buc == '\n')
+		{
+			fputc('\n',stream);  //output to stream
+
+			//to move linked list backward
+			pb=buf->buf_h;
+			while(pb!=buf->buf_c) //to move chars forward
+			{
+				pb->buc=(pb->next)->buc;  //get char from next unit of linked-list
+				pt=pb;   //pt is for updating buf_c after moving linked list backward
+				pb=pb->next;
+			}
+			buf->buf_c=pt;  //update buf_c after moving linked list backward
+		}
+
+	}
+	return 0;
 }
 
