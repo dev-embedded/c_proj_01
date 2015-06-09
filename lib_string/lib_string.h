@@ -32,7 +32,7 @@ int str_test();
 *     st for Sun Tao, zs for Zhou Song, and jq for Juequ
 *     _strlen is the original lib function for comparation.
 */
-int ld_strlen();
+int ld_strlen(const char *string);
 int jq_strlen(const char* str);
 int st_strlen(const char *str);
 int zs_strlen();

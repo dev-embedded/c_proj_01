@@ -30,7 +30,7 @@ printf("Note: if the (int) result=%d, or the (char*) result=" _S1 "; means the f
 printf("Test Start ... ...\n");
 
 printf("1. test the _strlen() of string 1:\n");
-printf("LINGdong's answer=%2d; JQ's answer=%2d; ST's answer=%2d; ZS's answer=%2d.\n",\
+printf("LINGdong's answer = %2d; JQ's answer=%2d; ST's answer=%2d; ZS's answer=%2d.\n",\
 		ld_strlen(str1), jq_strlen(str1), st_strlen(str1), zs_strlen(str1));
 
 printf("\n2. test the _strcmp() to compare string 1 with string 2:\n");

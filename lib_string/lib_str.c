@@ -2,11 +2,17 @@
 // 1. We have to include the lib_string.h file here because we use some value defined there.
 
 #include "lib_string.h"
-#include "stdio.h"
+#include <assert.h>
+#include <stdio.h>
 
-int ld_strlen()
+int ld_strlen(const char *string)
 {
-	return _INA;
+	int length;
+
+	assert(string != NULL);
+	for(length = 0; string[length] != '\0'; length++);
+
+	return length;
 }
 
 int jq_strlen(const char* str)
