@@ -5,12 +5,12 @@
 
 int buffer_test()
 {
-	BUFP_T *buff=(BUFP_T *) malloc(BPLEN);
-	SLL_T *node=(SLL_T *) malloc(BULEN);
+	BUFP_T *buff;   //=(BUFP_T *) malloc(BPLEN);
+	SLL_T *node;
 	int n=BUFFER_SIZE;
 	int i, ret;
 	char sw[STR_SIZE];  //string write to buffer
-	strcpy(sw, _S1);    //we can use _S1, _S2 to test the short string, or _SL for long sting
+	strcpy(sw, _SL);    //we can use _S1, _S2 to test the short string, or _SL for long sting
 	char *br=(char *)malloc(STR_SIZE);  //string for buffer read
 
 //	printf("This is in buffer_test, and the buffer size is: %d\n",n);
@@ -70,7 +70,6 @@ if(DEBUG)
 	ret=buf_sll_del(buff);
 
 printf("\nIn main buffer_test(), after call 02. Buffer delete function, the return is: %d. Buffer delete Successfully !!!\n",ret);
-
 
 	return 0;
 }

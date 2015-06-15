@@ -16,7 +16,8 @@ BUFP_T *buf_sll_create(const int n)
 {
 //printf("now, we are in buf_sll_create() !\n");
 	int i;
-	SLL_T *head, *bp, *temp;
+	SLL_T *bp;
+	SLL_T *head, *temp;
 	head=NULL;
 	for(i=0;i<n;i++)
 		{
@@ -34,7 +35,7 @@ BUFP_T *buf_sll_create(const int n)
 	buff->buf_c=head;  //initial the current pointer to head.
 //	buff->buf_e=temp;  //buffer end
 
-//printf("In 01. buf_sll_create(), the HEAD of Buffer created is: 0x %08X,",buff.buf_h);
+//printf("\nIn 01. buf_sll_create(), the HEAD of Buffer created is: 0x %08X,",buff.buf_h);
 //printf("and the CUR of Buffer created is: 0x %08X\n",buff.buf_c);
 
 	return buff;
@@ -80,7 +81,8 @@ if(DEBUG) printf("Finally, free the Buffer Pointers Structure: %p\n",buf);
 int buf_sll_len(const BUFP_T *buf)
 {
 	int i;
-	SLL_T *pb=buf->buf_h;
+	SLL_T *pb;
+	pb=buf->buf_h;
 
 	//Going through the singly linked-list to find out the location of buf->buf_c
 	for(i=0;i<BUFFER_SIZE;i++)
@@ -88,6 +90,7 @@ int buf_sll_len(const BUFP_T *buf)
 		if(pb==buf->buf_c) break;
 		pb=pb->next;
 	}
+
 	return i;
 }
 
@@ -101,11 +104,31 @@ void buf_sll_clear(BUFP_T *buf)
 }
 
 /*
- * 05. FIFO Buffer flush - Singly linked list Buffer.  --- code is NOT tested, and function is NOT used here !!!
- *     Output all the data from Buffer to a file, then clear the buffer data.
+ * 05. FIFO Buffer flush - Singly linked list Buffer.
+ *     Output all the data from Buffer to a string and print it, then clear the buffer data.
  */
+int buf_sll_flush(BUFP_T *buf)
+{
+	SLL_T *pb=buf->buf_h;
+	int i;
+	char str[BUFFER_SIZE+1]; // +1 for '\0'
+	//Output the content of the linked list
+	for(i=0;i<BUFFER_SIZE;i++)
+	{
+		str[i]=pb->buc;  //output a char from linked list to string
+		pb=pb->next;
+// printf("\In 05 buf_sll_flush(), when i=%d, char=%c\n", i, str[i]);
+	}
+	str[BUFFER_SIZE]='\0';  // to finish the string
+	printf("In 05 Flush Buffer(), The data output is: %s\n",str);
+	buf->buf_c=buf->buf_h;  //to point buf_c to the head of linked list
+	return i;
+}
+
 /*
-// Output all of the content first, then point buf_c to the head of the linked list
+// Output all of the content to a FILE *stream, then point buf_c to the head of the linked list
+// Note ---> code is NOT tested, and function is NOT used here !!!
+
 int buf_sll_flush(FILE *stream, BUFP_T *buf)
 {
 	char ch;
@@ -158,19 +181,17 @@ int buf_sll_flush2(FILE *stream, BUFP_T *buf)
 int buf_sll_w(BUFP_T *buf, char *c)
 {
 	int i=1;
-	char *ch=(char*)malloc(BUFFER_SIZE+1);  //for buffer output with the function buf_sll_w()
-	SLL_T *pb=(SLL_T *)malloc(BULEN);
+//	SLL_T *pb=(SLL_T *)malloc(BULEN);
 	buf_sll_clear(buf);  //to make sure the buffer is empty for writing, we assume it should always be empty before writing
-	pb=buf->buf_h;
-if(DEBUG) printf("\nIn 06. buf_sll_w(), the string to be input to buffer is: %s, & its strlen()==%d\n", c, strlen(c));
+	SLL_T *pb=buf->buf_h;
+	printf("\nIn 06. buf_sll_w(), the string to be input to buffer is: %s, & its strlen()==%d\n", c, strlen(c));
 	while(*c!='\0')
 	{
-		if(i>BUFFER_SIZE) //greater than length, do buffer reader first, then buffer writer.
+		if(i>1 && (i-1)%BUFFER_SIZE==0) //greater than length, do buffer reader first, then buffer writer.
 		{
-			printf("buffer writer full!");
-			buf_sll_r(ch, buf);              // <---maybe flush the buffer here !!!
-			printf("buffer reader: %s", ch);
-			i=1;
+			printf("buffer writer full, call buf_sll_flush ... \n");
+			buf_sll_flush(buf);
+			pb=buf->buf_h;   //reset the pb to the head of buffer
 		}
 
 		pb->buc=*c;  //write the current char to buffer
@@ -181,13 +202,12 @@ if(DEBUG) printf("node=%2d, the address is: 0x%08X, the char input is: %c\n",i,p
 		i++;
 	}
 
-	//for the last '\0'
-	if(i>BUFFER_SIZE) //if buffer full, do buffer reader first, then buffer writer.
+	//for the last char '\0'
+	if(i>1 && (i-1)%BUFFER_SIZE==0) //if buffer full, do buffer reader first, then buffer writer.
 	{
-		printf("buffer writer full!");
-		buf_sll_r(ch, buf);
-		printf("buffer reader: %s", ch);
-		i=1;
+		printf("buffer writer full, call buf_sll_flush ... \n");
+		buf_sll_flush(buf);
+		pb=buf->buf_h;   //reset the pb to the head of buffer
 	}
 	pb->buc=*c;  //write the last char '\0' to buffer
 if(DEBUG)
@@ -198,6 +218,8 @@ if(DEBUG)
 		printf("Err! string not finish with \\0 !!!\n");
 	}
 	buf->buf_c=pb->next;  //re-mark to the last node of the buffer.
+
+//	free(pb);  //free temporary variable
 
 	return i;
 }
@@ -222,6 +244,7 @@ int buf_sll_r(char *c, BUFP_T *buf)
 		pb=pb->next;
 	}
 	buf->buf_c=buf->buf_h;  //to point buf_c to the head of linked list
+
 	return i;
 }
 
@@ -246,6 +269,7 @@ int buf_sll_r2(char *c, BUFP_T *buf)
 		}
 		buf->buf_c=pt;  //update buf_c after moving linked list backward
 	}
+
 	return i;
 }
 

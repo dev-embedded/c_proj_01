@@ -54,8 +54,8 @@ void buf_sll_clear(BUFP_T *buf);
  * 05. FIFO Buffer flush - Singly linked list Buffer.
  *     Output all the data from Buffer to a file, then clear the buffer data.
  */
-int buf_sll_flush(FILE *stream, BUFP_T *buf);
-int buf_sll_flush2(FILE *stream, BUFP_T *buf);
+int buf_sll_flush(BUFP_T *buf);
+//int buf_sll_flush2(FILE *stream, BUFP_T *buf);
 
 /*
  * 06. FIFO Buffer Writing- Singly linked list Buffer Write.

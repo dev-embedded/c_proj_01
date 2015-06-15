@@ -11,7 +11,7 @@ int main()
 // to test string functions in the ./lib_string sub-folder
 // str_test();
 
-// to test lib_buffer functions in the ./lib_buffer sub-folder
+// to test buffer functions in the ./lib_buffer sub-folder
 buffer_test();
 
 return 0;
