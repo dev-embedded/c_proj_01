@@ -10,7 +10,7 @@ int buffer_test()
 	int n=BUFFER_SIZE;
 	int i, ret;
 	char sw[STR_SIZE];  //string write to buffer
-	strcpy(sw, _SL);    //we can use _S1, _S2 to test the short string, or _SL for long sting
+	strcpy(sw, _S1);    //we can use _S1, _S2 to test the short string, or _SL for long sting
 	char *br=(char *)malloc(STR_SIZE);  //string for buffer read
 
 //	printf("This is in buffer_test, and the buffer size is: %d\n",n);
@@ -53,6 +53,10 @@ if(DEBUG)
 	printf("Node.%2d, the char stores in node:\\0. and the node address is: 0x%08X. <-- the last written one, stop print data!\n",i,node);
 }
 
+//---08. to test node usage method
+buf_sll_node_list(buff);
+
+
 //03. to test buffer length
 	ret=buf_sll_len(buff);
 	printf("\nCall 03 buf_sll_len() successfully, the buffer length is: %d.(including '\\0')\n", ret);
@@ -64,12 +68,13 @@ if(DEBUG)
 //	ret=buf_sll_r2(br,buff);
 //	printf("\nCall 07.2 buf_sll_r2() successfully, read %d nodes(including '\\0'), and get the string: %s\n", ret, br);
 
+//buf_sll_w(buff,"123456789");
+//buf_sll_node_list(buff);
 
 
 //02. to test buffer delete: buf_sll_del()
 	ret=buf_sll_del(buff);
-
-printf("\nIn main buffer_test(), after call 02. Buffer delete function, the return is: %d. Buffer delete Successfully !!!\n",ret);
+	printf("\nIn main buffer_test(), after call 02. Buffer delete function, the return is: %d. Buffer delete Successfully !!!\n",ret);
 
 	return 0;
 }

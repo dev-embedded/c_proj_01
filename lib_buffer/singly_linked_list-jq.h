@@ -71,4 +71,10 @@ int buf_sll_w(BUFP_T *buf, char *txt);
 int buf_sll_r(char *c, BUFP_T *buf);
 int buf_sll_r2(char *c, BUFP_T *buf);
 
+/*
+ * 08. SLL node test
+ */
+int buf_sll_node_list(BUFP_T *buf);
+
+
 #endif /* SINGLY_LINKED_LIST_JQ_H_ */

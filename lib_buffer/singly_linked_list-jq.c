@@ -64,7 +64,7 @@ if(DEBUG) printf("node.%2d to be free --> its next point to: %p, and its address
 	pe=buf->buf_h;  //re-point the *pe to the head to find the end of the list in the next while round.
 	}
 
-if(DEBUG) printf("node.%2d to be free --> its next point to: %p, and its address is: 0x%08X. <-- The LAST node.\n",i,pe->next,pe);
+if(DEBUG) printf("node.%2d to be free --> its next point to: %p, and its address is: 0x%08X. <-- The LAST node.(02 del)\n",i,pe->next,pe);
 	free(pe);  //to free the last one left in the linked-list
 
 if(DEBUG) printf("Finally, free the Buffer Pointers Structure: %p\n",buf);
@@ -213,7 +213,7 @@ if(DEBUG) printf("node=%2d, the address is: 0x%08X, the char input is: %c\n",i,p
 if(DEBUG)
 	{
 	if(pb->buc=='\0')
-		printf("node=%2d, the address is: 0x%08X, the char input is:\\0. <-- Buffer Write complete!\n",i,pb);
+		printf("node=%2d, the address is: 0x%08X, the char input is:\\0. <-- Buffer Write complete!(06)\n",i,pb);
 	else
 		printf("Err! string not finish with \\0 !!!\n");
 	}
@@ -232,16 +232,17 @@ if(DEBUG)
 // 07 Output all of the content first, then point buf_c to the head of the linked list
 int buf_sll_r(char *c, BUFP_T *buf)
 {
-	SLL_T *pb=buf->buf_h;
+	SLL_T *pbu;
+	pbu=buf->buf_h;
 	int i;
 	int len=buf_sll_len(buf);
 
 	//Output the content of the linked list
 	for(i=0;i<len;i++)
 	{
-		*c=pb->buc;  //output a char from linked list to string
+		*c=pbu->buc;  //output a char from linked list to string
 		c++;
-		pb=pb->next;
+		pbu=pbu->next;
 	}
 	buf->buf_c=buf->buf_h;  //to point buf_c to the head of linked list
 
@@ -320,4 +321,33 @@ int buf_sll_r(FILE *stream, BUFP_T *buf, int bufmod)
 	return 0;
 }
 */
+
+// 08 to list Singly linked-list node
+int buf_sll_node_list(BUFP_T *buf)  //can be used as debug infomaiton
+{
+	printf("\nIn 08 node list: <--(to test whether we need malloc a node to use the linked-list) <--\n");
+	SLL_T *node;
+//	SLL_T *node=(SLL_T *)malloc(BULEN); //NOTE: we can malloc the node, but we when we free it, we must be very careful!!!
+										//      because: the value of node is changed in the following code, then in the
+										//      end, we should find out the original malloc address to free.
+										//      otherwise, we might free a useful node of the linked-list !!!
+//	printf("when create, the node address is: %p\n",node);
+	node=buf->buf_h;
+	int i=1;
+	while(node->buc!='\0')
+	{
+		printf("node %d; address: %p, char: %c (ASCII %2d), node next: %p\n",i,node,node->buc,node->buc,node->next);
+		node=node->next;     //node address changed, so can't be free !!!
+		i++;
+	}
+	printf("node %d; address: %p, char:\\0 (ASCII %2d), node next: %p. <-- the last node listed! (08) \n",i,node,node->buc,node->next);
+
+//	printf("when delete, the node address to be free is: %p\n",node);
+//	free(node);
+	return 0;
+}
+
+
+
+
 
