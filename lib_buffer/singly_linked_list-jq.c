@@ -336,7 +336,7 @@ int buf_sll_node_list(BUFP_T *buf)  //can be used as debug infomaiton
 	int i=1;
 	while(node->buc!='\0')
 	{
-		printf("node %d; address: %p, char: %c (ASCII %2d), node next: %p\n",i,node,node->buc,node->buc,node->next);
+		printf("node %d; address: %p, char: %c (ASCII %2d), char address: %p;\n\t& node next: %p, node next address: %p\n",i,node,node->buc,node->buc,&node->buc,node->next,&node->next);
 		node=node->next;     //node address changed, so can't be free !!!
 		i++;
 	}

@@ -5,15 +5,52 @@
 
 int buffer_test()
 {
+	int n=BUFFER_SIZE;
+	char sw[STR_SIZE];  //string write to buffer
+	strcpy(sw, _SL);    //we can use _S1, _S2 to test the short string, or _SL for long sting
+	char *br=(char *)malloc(STR_SIZE);  //string for buffer read
+	int i, ret;
+
+if(CLLB)
+{
+	CBP_T *cbuf;
+	CBN_T *cnode;
+
+	//01 buffer create: buf_cll_create()
+		cbuf=buf_cll_create(n);
+		if(DEBUG) buf_cll_list_node_a(cbuf);
+		printf("\n(in main) After created, the buffer usage situation is:");
+		buf_cll_len(cbuf);
+
+	//06 buffer write: buf_cll_w(), it will test the 05 buf_cll_flush() for long strings
+		ret=buf_cll_w(cbuf,sw);
+		printf("\n(in main) After calling 06 buf_cll_w(), the return is: %d\n", ret);
+		if(DEBUG) buf_cll_list_node_c(cbuf);
+
+	//03 buffer length: buf_cll_len()
+		printf("\n(in main) After writing, the buffer usage situation is:");
+		ret=buf_cll_len(cbuf);
+
+	//07 buffer read: buf_cll_r(), it also tests 04 buf_cll_clear()
+		ret=buf_cll_r(br, cbuf);
+		printf("\n(in main) After calling 07 buf_cll_r(), the return is: %d, the output ===> %s\n", ret, br);
+		printf("\n(in main) After reading, the buffer usage situation is: (it should be 0) ");
+		buf_cll_len(cbuf);
+
+	//02 buffer delete
+		buf_cll_del(cbuf);
+}
+
+
+if(SLLB)
+{
 	BUFP_T *buff;   //=(BUFP_T *) malloc(BPLEN);
 	SLL_T *node;
-	int n=BUFFER_SIZE;
-	int i, ret;
-	char sw[STR_SIZE];  //string write to buffer
-	strcpy(sw, _S1);    //we can use _S1, _S2 to test the short string, or _SL for long sting
-	char *br=(char *)malloc(STR_SIZE);  //string for buffer read
 
 //	printf("This is in buffer_test, and the buffer size is: %d\n",n);
+
+	int l=BULEN;
+	printf("--- The length of buffer node is:%d, & the (sizeof)node is ---\n",l);
 
 //01, to test buffer create: buf_sll_create()
 	buff=buf_sll_create(n);
@@ -75,6 +112,7 @@ buf_sll_node_list(buff);
 //02. to test buffer delete: buf_sll_del()
 	ret=buf_sll_del(buff);
 	printf("\nIn main buffer_test(), after call 02. Buffer delete function, the return is: %d. Buffer delete Successfully !!!\n",ret);
+}   //end of if(SLLB)
 
 	return 0;
 }

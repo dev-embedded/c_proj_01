@@ -18,8 +18,11 @@
 
 #include "buffer_test.h"
 #include "singly_linked_list-jq.h"
+#include "circular_linked_list_buffer-jq.h"
 
 #define DEBUG 0  //to switch the print info in details: 0 for OFF, 1 for ON
+#define SLLB 0  //Singly Linked-list BUFFER
+#define CLLB 1  //Circular Linked-list BUFFER
 
 //const int BUFFER_SIZE=20;
 #define BUFFER_SIZE 5
@@ -28,7 +31,7 @@
 //#define NULL 0
 #define _NA -999  //Not Available
 #define _S1 "abc"
-#define _S2 "defg"
+#define _S2 "defgh"
 #define _SL "0123456789ABC"  //Long String for test
 
 //buffer mode:

@@ -17,9 +17,6 @@ typedef struct  sll //singly linked list buffer node
 	struct sll *next;
 }SLL_T;
 
-#define BULEN sizeof(SLL_T)  //Buffer List Structure Unit Length
-#define BPLEN sizeof(BUFP_T)  //Buffer Pointers Structure Length
-
 typedef struct buf_pt    //Buffer pointers
 {
 	SLL_T * buf_h;   //Buffer head (singly linked list)
@@ -27,6 +24,9 @@ typedef struct buf_pt    //Buffer pointers
 	SLL_T * buf_c;   //Buffer current position (singly linked list). It equals to buf_h when the buffer
 				 	 //is empty, and it equals to NULL when the buffer is full.
 }BUFP_T;
+
+#define BULEN sizeof(SLL_T)  //Buffer List Structure Unit Length
+#define BPLEN sizeof(BUFP_T)  //Buffer Pointers Structure Length
 
 /*
  * 01. FIFO Buffer Create - Singly linked list Buffer Create.
