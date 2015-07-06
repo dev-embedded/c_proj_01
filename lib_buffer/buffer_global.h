@@ -20,7 +20,7 @@
 #include "singly_linked_list-jq.h"
 #include "circular_linked_list_buffer-jq.h"
 
-#define DEBUG 0  //to switch the print info in details: 0 for OFF, 1 for ON
+#define DEBUG 1  //to switch the print info in details: 0 for OFF, 1 for ON
 #define SLLB 0  //Singly Linked-list BUFFER
 #define CLLB 1  //Circular Linked-list BUFFER
 

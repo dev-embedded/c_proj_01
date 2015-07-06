@@ -96,7 +96,7 @@ printf("The length checked by the end pointer is: %d, and the buffer->blen is: %
 void buf_cll_clear(CBP_T *buf)
 {
 printf("\nThis is in fun 04 buf_cll_clear()\n");
-	buf->cllb_e=buf->cllb_h;
+	buf->cllb_h=buf->cllb_e;
 	buf->blen=0;
 	return;
 }
@@ -114,7 +114,7 @@ int buf_cll_flush(CBP_T *buf)
 	for(i=0,node=buf->cllb_h;i!=buf->blen||node!=buf->cllb_e;i++,node=node->next)
 		printf(" %c |",node->bch);
 	printf(" <=== \n");
-	buf->cllb_e=buf->cllb_h;  //initial buffer after flush
+	buf->cllb_h=buf->cllb_e;  //initial buffer after flush
 	buf->blen=0;			  //initial buffer after flush
 	return i;
 }

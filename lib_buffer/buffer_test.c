@@ -7,7 +7,7 @@ int buffer_test()
 {
 	int n=BUFFER_SIZE;
 	char sw[STR_SIZE];  //string write to buffer
-	strcpy(sw, _SL);    //we can use _S1, _S2 to test the short string, or _SL for long sting
+	strcpy(sw, _S1);    //we can use _S1, _S2 to test the short string, or _SL for long sting
 	char *br=(char *)malloc(STR_SIZE);  //string for buffer read
 	int i, ret;
 
@@ -36,6 +36,7 @@ if(CLLB)
 		printf("\n(in main) After calling 07 buf_cll_r(), the return is: %d, the output ===> %s\n", ret, br);
 		printf("\n(in main) After reading, the buffer usage situation is: (it should be 0) ");
 		buf_cll_len(cbuf);
+		if(DEBUG) buf_cll_list_node_c(cbuf);
 
 	//02 buffer delete
 		buf_cll_del(cbuf);
