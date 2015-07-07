@@ -11,7 +11,7 @@ This project is mainly to realize a buffer with singly linked list and linked li
 --- for buffer write, the buffer is default to empty. 
 
 
-2. String Buffer - Ring linked list (Single thread) 
+2. String Buffer - Cycle linked list (Single thread) 
 (constant node amount, constant node message) 
 
 
