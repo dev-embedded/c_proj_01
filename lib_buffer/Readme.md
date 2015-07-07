@@ -11,15 +11,15 @@ This project is mainly to realize a buffer with singly linked list and linked li
 --- for buffer write, the buffer is default to empty. 
 
 
-2. String Buffer - Cycle linked list (Single thread) 
+2. String Buffer - Circular linked list (Single thread) 
 (constant node amount, constant node message) 
 
 
-3. File IO Buffer - Ring linked list (Single thread) 
+3. File IO Buffer - Circular linked list (Single thread) 
 (constant node amount, dynamic node message) 
 
 
-4. File IO Buffer - Ring linked list (Multi-thread) 
+4. File IO Buffer - Circular linked list (Multi-thread) 
 (constant node amount, dynamic node message) 
 
 
