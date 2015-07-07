@@ -1,6 +1,7 @@
+#include "singly_linked_list_st.h"
+
 #include <stdio.h>
 #include <malloc.h>
-#include "lib_buffer_st.h"
 #include "buffer_global.h"
 
 buffer_st *buf_init_st()

@@ -3,8 +3,8 @@
 // 2. The functions (libs) are put in their own sub-folders; we can
 // 	  call them with adding "#include xxx/yyy.h" declaration here.
 
+#include "lib_buffer/singly_linked_list_st.h"
 #include "lib_string/lib_string.h"
-#include "lib_buffer/lib_buffer_st.h"
 
 int main()
 {

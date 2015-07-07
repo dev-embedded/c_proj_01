@@ -1,5 +1,5 @@
-#ifndef LIB_BUFFER_LIB_BUFFER_ST_H_
-#define LIB_BUFFER_LIB_BUFFER_ST_H_
+#ifndef LIB_BUFFER_SINGLY_LINKED_LIST_ST_H_
+#define LIB_BUFFER_SINGLY_LINKED_LIST_ST_H_
 
 typedef struct buffer_node *l_buffer_node;
 
@@ -45,4 +45,4 @@ int buf_write_st(buffer_st *buffer, const char *str);
 
 buffer_st *buf_read_st(buffer_st *buffer);
 
-#endif /* LIB_BUFFER_LIB_BUFFER_ST_H_ */
+#endif /* LIB_BUFFER_SINGLY_LINKED_LIST_ST_H_ */
