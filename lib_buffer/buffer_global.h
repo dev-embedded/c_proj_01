@@ -19,14 +19,24 @@
 #include "buffer_test.h"
 #include "singly_linked_list-jq.h"
 #include "circular_linked_list_buffer-jq.h"
+#include "stbuf_dclls.h"
 
-#define DEBUG 1  //to switch the print info in details: 0 for OFF, 1 for ON
+//0 for OFF, 1 for ON
+#define DEBUG 1  //to switch the print info in details
 #define SLLB 0  //Singly Linked-list BUFFER
-#define CLLB 1  //Circular Linked-list BUFFER
+#define CLLB 0  //Circular Linked-list BUFFER
+#define DCSB_ST 1	//Dynamic Circular linked-list Stream Buffer of Single Thread
+#define DCSB_MT 0	//Dynamic Circular linked-list Stream Buffer of Multiple Thread
 
 //const int BUFFER_SIZE=20;
 #define BUFFER_SIZE 5
 #define STR_SIZE 15   //the max length of a string
+#define MSG_SIZE 81   //used in stbuf_dclls.c
+#define BUFFER_FULL 1
+
+#define BUF_MODE '\n'   //the buffer input mode, EOF (or -1) for the Full file input mode
+						//                       '\n' for the line input mode
+						// will be used in buffer_read function
 
 //#define NULL 0
 #define _NA -999  //Not Available

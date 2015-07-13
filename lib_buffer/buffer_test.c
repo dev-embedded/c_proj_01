@@ -11,6 +11,41 @@ int buffer_test()
 	char *br=(char *)malloc(STR_SIZE);  //string for buffer read
 	int i, ret;
 
+
+if(DCSB_ST)
+{
+	//DCSN_T *np;
+	DCSP_T *bp;
+printf("Single Thread - Dynamic Circular linked-list Stream Buffer(FIFO) test ==>>> \n");
+
+	//01 buffer create: buf_cll_create()
+printf("111111  -  In main(), now create buffer!\n");
+		bp=buf_dcs_create();
+
+		//to list the buffer length & the node address
+		printf("\n(in main) After created, the buffer length is: %d\n",buf_dcs_len(bp));
+		if(DEBUG) buf_dcs_nlist_a(bp);
+
+	//to test buffer node add function
+	if(0)
+	{
+		for(i=1;i<=(BUFFER_SIZE+2);i++)
+		{
+			printf("\n-------> Add node %d, !move the rare next!\n",i);
+			ret=buf_dcs_na(bp);
+			if(ret==BUFFER_FULL){ printf("when i=%d, BUFFER_FULL!\n",i); break; }
+			bp->buf_r=bp->buf_r->next;  //to move rare forward.
+			printf("\n(in main) After add node %d, move the RARE to: %p, then the buffer length is: %d\n",i,bp->buf_r,buf_dcs_len(bp));
+			if(DEBUG) buf_dcs_nlist_a(bp);
+		}
+	}
+
+		ret=buf_dcs_len(bp);
+		printf("\n(in main) After add one node without move the rare pointer forward, the buffer length is: %d\n",ret);
+
+}
+
+
 if(CLLB)
 {
 	CBP_T *cbuf;
