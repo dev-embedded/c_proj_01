@@ -91,7 +91,7 @@ char* zs_strcat(char *str, const char *substr)
 	char *cp = str;
 	while (*cp)
 	++cp;  //Get end of str
-	while (*cp++ = *substr++)
+	while (*cp++ == *substr++)
 	; //copy substr to the end of str
 	return (str);
 }
@@ -200,7 +200,7 @@ char *st_strcpy(char *dest, const char *src)
 char* zs_strcpy(char *dest, const char *src)
 {
 	char*cp = dest;
-	while (*cp++ = *src++)
+	while (*cp++ == *src++)
 	; // copy src to dest
 	return (dest);
 }
@@ -340,6 +340,7 @@ char *st_strrep(char *str, char *rep, char *origin)
 		st_strcpy(str, str_temp);
 		return str;
 	}
+	return str;
 }
 
 
